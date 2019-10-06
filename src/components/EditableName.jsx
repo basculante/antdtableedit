@@ -7,22 +7,22 @@ const EditableName = ({ name, editedUsers, setEditedUsersParent }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(name);
 
-  const handleClickOutside = e => {
-    if (node.current.contains(e.target)) {
-      return;
-    }
-
-    setIsEditing(false);
-    const mappedEditedUsers = editedUsers.map(user => {
-      if (user.name === name) {
-        user = { ...user, name: editedName };
-      }
-      return user;
-    });
-    setEditedUsersParent(mappedEditedUsers);
-  };
-
   useEffect(() => {
+    const handleClickOutside = e => {
+      if (node.current.contains(e.target)) {
+        return;
+      }
+
+      setIsEditing(false);
+      const mappedEditedUsers = editedUsers.map(user => {
+        if (user.name === name) {
+          user = { ...user, name: editedName };
+        }
+        return user;
+      });
+      setEditedUsersParent(mappedEditedUsers);
+    };
+
     if (isEditing) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -32,7 +32,7 @@ const EditableName = ({ name, editedUsers, setEditedUsersParent }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isEditing, editedName]);
+  }, [isEditing, editedName, editedUsers, name, setEditedUsersParent]);
 
   const handleOnClickEdit = () => {
     setIsEditing(true);
@@ -41,8 +41,6 @@ const EditableName = ({ name, editedUsers, setEditedUsersParent }) => {
   const handleOnChange = e => {
     setEditedName(e.target.value);
   };
-
-  console.log(editedUsers);
 
   return (
     <div ref={node} onClick={handleOnClickEdit}>
