@@ -43,12 +43,11 @@ const EditableName = ({ name, editedUsers, setEditedUsersParent }) => {
   };
 
   return (
-    <div ref={node} onClick={handleOnClickEdit}>
+    <div ref={node} onClick={handleOnClickEdit} >
       {isEditing ? (
         <Input
           value={editedName}
           onChange={handleOnChange}
-          style={{ width: "50%" }}
         />
       ) : (
         editedName

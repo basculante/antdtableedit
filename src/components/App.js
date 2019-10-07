@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MyTable from "./Table";
+import "./App.css";
 
 const App = () => {
   const [users, setUsers] = useState([]);

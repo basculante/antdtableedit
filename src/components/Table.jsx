@@ -16,17 +16,23 @@ const MyTable = ({ users, editedUsers, setEditedUsersParent }) => {
 
   return (
     <div>
-      <Table dataSource={users} rowKey="name">
+      <Table
+        dataSource={users}
+        rowKey="name"
+        rowClassName={(record, index) => "editable-row"}
+      >
         <Table.Column
           title="name"
           dataIndex="name"
           render={(name, record) => {
             return (
-              <EditableName
-                name={name}
-                editedUsers={editedUsers}
-                setEditedUsersParent={setEditedUsersParent}
-              />
+              <div className="editable-cell-value-wrap">
+                <EditableName
+                  name={name}
+                  editedUsers={editedUsers}
+                  setEditedUsersParent={setEditedUsersParent}
+                />
+              </div>
             );
           }}
         />
@@ -35,11 +41,13 @@ const MyTable = ({ users, editedUsers, setEditedUsersParent }) => {
           dataIndex="username"
           render={(username, record) => {
             return (
-              <EditableUserName
-                username={username}
-                editedUsers={editedUsers}
-                setEditedUsersParent={setEditedUsersParent}
-              />
+              <div className="editable-cell-value-wrapper">
+                <EditableUserName
+                  username={username}
+                  editedUsers={editedUsers}
+                  setEditedUsersParent={setEditedUsersParent}
+                />
+              </div>
             );
           }}
         />
