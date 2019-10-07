@@ -34,7 +34,7 @@ const EditableUserName = ({ username, editedUsers, setEditedUsersParent }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isEditing, isDropDownVisible, editedUserName, editedUsers, username]);
+  }, [isEditing, isDropDownVisible, editedUserName, editedUsers, username, setEditedUsersParent]);
 
   const handleOnClickEditing = () => {
     setIsEditing(true);
@@ -51,8 +51,6 @@ const EditableUserName = ({ username, editedUsers, setEditedUsersParent }) => {
   const handleOnSelect = () => {
     setIsDropDownVisible(false);
   };
-
-  console.log(editedUsers);
 
   return (
     <div ref={node} onClick={handleOnClickEditing}>
